@@ -17,6 +17,7 @@ import fcntl
 import struct
 import tkinter as tk
 from tkinter import messagebox
+import time
 
 def get_ip_address(ifname):
     try:
@@ -42,6 +43,7 @@ def show_ip():
         messagebox.showerror("Error", "Could not get IP address.")
 
 if __name__ == "__main__":
+    time.sleep(10)
     root = tk.Tk()
     root.withdraw()  # Hide the root window
     show_ip()

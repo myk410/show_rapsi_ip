@@ -49,7 +49,7 @@ if __name__ == "__main__":
    ```
 
    This script uses `tkinter` to create a message box that displays the IP address.
-
+  ```
 3. **Make the Script Executable:**
 
    Change the permissions of the script to make it executable:
@@ -71,10 +71,8 @@ if __name__ == "__main__":
    - Add the following line to the end of the file:
 
      ```bash
-     @python3 /path/to/your/show_ip_gui.py
+     @python3 /home/myk410/show_ip_gui.py
      ```
-
-     Replace `/path/to/your/show_ip_gui.py` with the actual path to your Python script.
 
 5. **Reboot the Raspberry Pi:**
 
@@ -85,3 +83,56 @@ if __name__ == "__main__":
    ```
 
 When the Raspberry Pi boots up and the desktop environment loads, the script should run and display the IP address in a pop-up window using Tkinter.
+
+
+
+If the script isn't running on startup, you can try using `crontab` to schedule the script to run at boot time. Here’s how you can do it:
+
+1. **Open the Crontab Editor:**
+
+   ```bash
+   crontab -e
+   ```
+
+2. **Add the Script to Crontab:**
+
+   Add the following line to the crontab file to run the script at boot:
+
+   ```bash
+   @reboot DISPLAY=:0 python3 /home/myk410/show_ip_gui.py
+   ```
+
+   Replace `/path/to/your/show_ip_gui.py` with the actual path to your Python script. The `DISPLAY=:0` part ensures that the script runs with the display environment, which is necessary for GUI applications.
+
+3. **Save and Exit:**
+
+   Save the changes and exit the editor. If you're using `nano`, you can do this by pressing `CTRL + X`, then `Y`, and then `Enter`.
+
+4. **Reboot the Raspberry Pi:**
+
+   Reboot your Raspberry Pi to test if the script runs at startup:
+
+   ```bash
+   sudo reboot
+   ```
+
+### Troubleshooting
+
+If it still doesn't work, there are a few things you can check:
+
+- **Check Crontab Logs:**
+  - You can check the logs to see if there are any errors. Use the following command to view the cron logs:
+    ```bash
+    grep CRON /var/log/syslog
+    ```
+
+- **Verify Script Path:**
+  - Ensure the path to the Python script is correct in the crontab entry.
+
+- **Check Script Permissions:**
+  - Make sure the script is executable:
+    ```bash
+    chmod +x /home/myk410/show_ip_gui.py
+    ```
+
+If everything is set up correctly, the script should run at startup and display the IP address in a pop-up window on the desktop.

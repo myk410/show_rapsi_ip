@@ -11,7 +11,7 @@ To display the IP address in a pop-up window on the Raspberry Pi's desktop at st
 
    Create a new Python script, for example, `show_ip_gui.py`, with the following content:
 
-   ```python
+```
 import socket
 import fcntl
 import struct
@@ -49,7 +49,7 @@ if __name__ == "__main__":
    ```
 
    This script uses `tkinter` to create a message box that displays the IP address.
-  ```
+
 3. **Make the Script Executable:**
 
    Change the permissions of the script to make it executable:
